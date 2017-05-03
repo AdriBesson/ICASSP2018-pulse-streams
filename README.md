@@ -11,9 +11,9 @@ This paper considers the problem of reconstructing ultrafast ultrasound (US) ele
 ## Citation (BibTex):
 If you are using this code, please cite the following paper. 
 
-
 ## System Requirements:
-This software has been tested on Linux 64-bit system (Ubuntu 16-04, Mint distribution) and on Windows 10 sysetm.
+This software has been tested on Linux 64-bit system (Ubuntu 16-04, Mint distribution) and on Windows 10 system.
+
 ### Prerequisites
 1. MATLAB (Tested on R2017a)
 
