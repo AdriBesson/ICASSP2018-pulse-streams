@@ -175,5 +175,5 @@ epsilon = sqrt(10^(-(snr_awgn)/10));
 alpha_est = admm_bpcon(y, epsilon, A, At, T, Tt, param_solver);
 channel_est = Psi*alpha_est;
 
-filenameOut = 'resultsSPL/results_multichannel_noisy.mat';
+filenameOut = '../resultsSPL/results_multichannel_noisy.mat';
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
