@@ -63,6 +63,7 @@ for ll = 1:N_el
     rf_data_conv(:,ll) = conv(rf_data(:,ll), pulse);
 end
 rf_data = rf_data_conv(1:Nt,:);
+t = (0:Nt-1)/fs;
 
 % Add noise
 rf_data_noisy = awgn(rf_data, snr_awgn);
@@ -118,6 +119,8 @@ epsilon = sqrt(10^(-(snr_awgn)/10));
 % solving the problem
 alpha_est = admm_bpcon(y, epsilon, A, At, T, Tt, param_solver);
 channel_est = Psi*alpha_est;
+
+
 
 filenameOut = 'resultsSPL/results_1channel_noisy.mat';
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
