@@ -3,9 +3,7 @@ clear all;
 close all;
 clc
 
-addpath(genpath('src'));
-addpath(genpath('data'));
-addpath(genpath('../toolboxes/export_fig'));
+addpath(genpath('../src'));
 
 %-- Pulse
 f0 = 5e6;
