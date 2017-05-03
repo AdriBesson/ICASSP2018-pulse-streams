@@ -110,3 +110,30 @@ axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
 
 
+%% Carotid
+clear all;
+filename = 'resultsSPL/results_carotid.mat';
+load(filename);
+dBRange = 40;
+
+%-- Reference image
+figure('Color', [1 1 1])
+imagesc(xim*1000, zim*1000, bmode_compressed_ref); colormap gray; caxis([-dBRange, 0]);
+axis image;
+xlabel('Lateral dimension [mm]')
+ylabel('Depth [mm]')
+title 'Reference B-mode image'
+
+figure('Color', [1 1 1])
+imagesc(xim*1000, zim*1000, bmode_compressed_1channel_rec); colormap gray; caxis([-dBRange, 0]);
+axis image;
+xlabel('Lateral dimension [mm]')
+ylabel('Depth [mm]')
+title(['B-mode image (6% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
+
+figure('Color', [1 1 1])
+imagesc(xim*1000, zim*1000, bmode_compressed_multichannel_rec); colormap gray; caxis([-dBRange, 0]);
+axis image;
+xlabel('Lateral dimension [mm]')
+ylabel('Depth [mm]')
+title(['B-mode image (6% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
