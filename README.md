@@ -1,9 +1,9 @@
-# [Pulse stream models in ultrafast ultrasound imaging]
+# Pulse stream models in ultrafast ultrasound imaging
 [Adrien Besson](https://adribesson.github.io/), [Rafael E. Carrillo](https://scholar.google.com/citations?user=-KhnCwMAAAAJ&hl=fr), [Dimitris Perdios](https://people.epfl.ch/dimitris.perdios?lang=fr), [Marcel Arditi](https://scholar.google.ch/citations?user=4w3-BxEAAAAJ&hl=fr), [Yves Wiaux](https://researchportal.hw.ac.uk/en/persons/yves-wiaux) and [Jean-Philippe Thiran](http://lts5www.epfl.ch/thiran.html).
-submitted to [IEEE Signal Processing Letters] (http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=97) 
+submitted to [IEEE Signal Processing Letters](http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=97) 
 
 ## Introduction
-This repository contains all the code to reproduce the results of the paper Pulse stream models in ultrafast ultrasound imaging.
+This repository contains all the code to reproduce the results of the paper: Pulse stream models in ultrafast ultrasound imaging.
 
 ## Abstract:
 This paper considers the problem of reconstructing ultrafast ultrasound (US) element raw-data from random projections. It presents a new signal model, coined as multichannel ultrasound pulse-stream model, which exploits the pulse streams models of US signals and accounts for the intersensors dependencies. We propose a sampling theorem and a reconstruction algorithm, based on `1-minimization, for signals belonging to such a model. We show the benefits of the proposed approach through numerical simulations on 1D-signals and on in vivo carotid images.
