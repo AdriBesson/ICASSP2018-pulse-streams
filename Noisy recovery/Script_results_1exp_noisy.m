@@ -39,8 +39,6 @@ M = round(meas_ratio*Nt);
 nmse = zeros(numel(meas_ratio), n_draws);
 nrmse = zeros(numel(meas_ratio), n_draws);
 
-
-
 % positions of the points
 x_points = randi(N_el, [n_points, 1]);
 t_points = randi([floor(numel(pulse)/2) Nt-floor(numel(pulse)/2)], [n_points, 1]);
@@ -120,9 +118,7 @@ epsilon = sqrt(10^(-(snr_awgn)/10));
 alpha_est = admm_bpcon(y, epsilon, A, At, T, Tt, param_solver);
 channel_est = Psi*alpha_est;
 
-
-
-filenameOut = 'resultsSPL/results_1channel_noisy.mat';
+filenameOut = '../resultsSPL/results_1channel_noisy.mat';
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
 
 %% Multi channel experiment
