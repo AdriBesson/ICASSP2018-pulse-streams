@@ -10,7 +10,7 @@ f0 = 5e6;
 fs = 4*1.5*f0;
 c0 = 1540;
 N_el = 64;
-xm = (0:N_el-1)*4*c0/f0;
+xm = (0:N_el-1)*2*c0/f0;
 xm = xm - xm(end/2);
 impulse = sin(2*pi*f0*(0:1/fs:2/f0));
 impulse_response = impulse .* hanning(length(impulse))';
@@ -131,6 +131,6 @@ for jj = 1:numel(list_n_cha_prior)
     end
 
     %-- Save the output file
-    %filenameOut = strcat(['results_', num2str(n_cha_prior+1) ,'channels_synth_pulse_4lambda.mat']);
-    %save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws', 'f0', 'fs', 'c0', 'pulse', 'xm', 'meas_ratio');
+    filenameOut = strcat(['../resultsSPL/','results_', num2str(n_cha_prior+1) ,'channels_synth_pulse_2lambda.mat']);
+    save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws', 'f0', 'fs', 'c0', 'pulse', 'xm', 'meas_ratio');
 end

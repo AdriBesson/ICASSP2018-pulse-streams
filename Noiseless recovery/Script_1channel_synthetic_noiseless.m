@@ -19,7 +19,6 @@ pulse = pulse /max(abs(pulse));
 %-- Characteristics of the raw data
 Nt = 2000;
 n_points = 20;
-snr_awgn = 40;
 
 %-- Build the dictionary
 pulse_pad = zeros(Nt,1);
@@ -30,7 +29,7 @@ Psi = circulant(pulse_pad);
 n_draws = 1000;
 
 %-- Measurement ratios
-meas_ratio = 0.01:0.01:0.20;
+meas_ratio = [0.01:0.01:0.20, 0.30, 0.40, 0.50];
 
 %-- Output variables
 nmse = zeros(numel(meas_ratio), n_draws);
@@ -48,11 +47,10 @@ for mm = 1:numel(meas_ratio)
         channel = zeros(Nt,1);
         channel(t_points) = amp_points;
         channel = conv(channel, pulse, 'same');
-        channel_noisy = awgn(channel, snr_awgn);
         
         %-- Measurement matrix and measurement vector
         Phi = randraw('normal', [0, 1/sqrt(M)], [M Nt]);
-        y = Phi*channel_noisy(:);
+        y = Phi*channel(:);
         
         %-- Setting the functions for the admm solver
         G = Phi*Psi;
@@ -63,11 +61,11 @@ for mm = 1:numel(meas_ratio)
         
         %-- Setting the parameters for the solver
         param_solver.verbose = 0; % display parameter
-        param_solver.max_iter = 2000;       % maximum iteration
+        param_solver.max_iter = 1000;       % maximum iteration
         param_solver.tol = 1e-10;        % tolerance to stop iterating
         param_solver.nu = eigs(G'*G, 1);
         param_solver.gamma = 8e-1 *norm(At(y), inf);
-        epsilon = sqrt(10^(-(snr_awgn)/10));
+        epsilon = 0;
         
         % solving the problem
         alpha_est = admm_bpcon(y, epsilon, A, At, T, Tt, param_solver);
@@ -85,5 +83,5 @@ for mm = 1:numel(meas_ratio)
 end
 
 %-- Save the output file
-filenameOut = 'results_1channel_noisy_synth_pulse.mat';
-save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws','snr_awgn', 'f0', 'fs', 'c0', 'pulse', 'meas_ratio');
+filenameOut = '../resultsSPL/results_1channel_synth_pulse.mat';
+save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws', 'f0', 'fs', 'c0', 'pulse', 'meas_ratio');
