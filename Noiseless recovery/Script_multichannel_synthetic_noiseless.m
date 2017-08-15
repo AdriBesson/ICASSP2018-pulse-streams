@@ -5,17 +5,18 @@ clc
 addpath(genpath('../src'));
 
 %-- Pulse
-f0 = 5e6;
-fs = 4*1.5*f0;
+f0 = 5.208e6;
+fs = 4*f0;
+bw = 0.67;
 c0 = 1540;
-N_el = 64;
-xm = (0:N_el-1)*2*c0/f0;
-xm = xm - xm(end/2);
-impulse = sin(2*pi*f0*(0:1/fs:2/f0));
-impulse_response = impulse .* hanning(length(impulse))';
-excitation = sin(2*pi*f0*(0:1/fs:1/f0));
-pulse = conv(conv(excitation, impulse_response), impulse_response);
-pulse = pulse /max(abs(pulse));
+pulse_duration = 2.5;
+t0 = (-1/bw/f0): 1/fs : (1/bw/f0);
+impulse_response = gauspuls(t0, f0, bw);
+te = (-pulse_duration/2/f0): 1/fs : (pulse_duration/2/f0);
+excitation = square(2*pi*f0*te+pi/2);
+one_way_ir = conv(impulse_response,excitation);
+pulse = conv(one_way_ir,impulse_response);
+pulse = pulse / max(pulse(:));
 
 %-- Characteristics of the raw data
 Nt = 2000;
