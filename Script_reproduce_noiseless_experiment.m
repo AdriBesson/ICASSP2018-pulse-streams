@@ -1,4 +1,5 @@
 % Regenerate the noiseless experiment
+addpath(genpath('src'));
 cd('Noiseless recovery');
 
 %1 channel
