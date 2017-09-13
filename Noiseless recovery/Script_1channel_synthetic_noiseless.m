@@ -19,8 +19,6 @@ excitation = square(2*pi*f0*te+pi/2);
 one_way_ir = conv(impulse_response,excitation);
 pulse = conv(one_way_ir,impulse_response);
 pulse = pulse / max(pulse(:));
-
-%-- Characteristics of the raw data
 Nt = 2000;
 n_points = 20;
 
