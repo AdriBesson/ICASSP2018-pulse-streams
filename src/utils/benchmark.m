@@ -1,4 +1,6 @@
-function [nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_points, n_draws)
+function [nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_points, n_draws, noise_level)
+
+%-- Output variables
 nmse = zeros(numel(meas_ratio), n_draws);
 nrmse = zeros(numel(meas_ratio), n_draws);
 
@@ -17,7 +19,7 @@ for mm = 1:numel(meas_ratio)
         points_amplitudes =  rand(size(points_locations(:,2)));
         
         %-- Positions and amplitude of the points
-        [raw_data, points_locations_raw] = us_seq.generate_rawdata(points_locations, points_amplitudes, 100);
+        [raw_data, points_locations_raw] = us_seq.generate_rawdata(points_locations, points_amplitudes, noise_level);
         
         % Reference channels
         channel_number_prior = randi(us_seq.number_elements-n_cha_prior-1) + (1:n_cha_prior+1);
