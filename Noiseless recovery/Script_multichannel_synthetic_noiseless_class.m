@@ -1,7 +1,3 @@
-%-- Script used to generate Monte Carlo simulation - multi-channel
-clear all;
-close all;
-clc
 %-- Script used to generate Monte Carlo simulation - 1 channel
 clear all;
 close all;
@@ -38,11 +34,11 @@ for jj = 1:numel(list_n_cha_prior)
     
     %-- Save the output file
     filenameOut = strcat(['../resultsSPL/','results_', num2str(n_cha_prior+1) ,'channels_synth_pulse.mat']);
-    save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws', 'f0', 'fs', 'c0', 'pulse', 'xm', 'meas_ratio');
+    save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
 end
 
 %% inter-element spacing 2 wavelengths
-us_seq.set_element_spacing = 2*us_seq.speed_of_sound/us_seq.central_frequency;
+us_seq.set_element_spacing(2*us_seq.speed_of_sound/us_seq.central_frequency);
 for jj = 1:numel(list_n_cha_prior)
     n_cha_prior = list_n_cha_prior(jj);
     
@@ -51,5 +47,5 @@ for jj = 1:numel(list_n_cha_prior)
     
     %-- Save the output file
     filenameOut = strcat(['../resultsSPL/','results_', num2str(n_cha_prior+1) ,'channels_synth_pulse_2lambda.mat']);
-    save(filenameOut, 'nmse', 'nrmse', 'Nt', 'n_points', 'n_draws', 'f0', 'fs', 'c0', 'pulse', 'xm', 'meas_ratio');
+    save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
 end

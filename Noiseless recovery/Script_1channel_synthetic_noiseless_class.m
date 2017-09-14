@@ -34,7 +34,7 @@ save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio'
 
 %% inter-element spacing 2 wavelengths
 %-- Simulation
-us_seq.set_element_spacing = 2*us_seq.speed_of_sound/us_seq.central_frequency;
+us_seq.set_element_spacing(2*us_seq.speed_of_sound/us_seq.central_frequency);
 [nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
 
 %-- Save the output file

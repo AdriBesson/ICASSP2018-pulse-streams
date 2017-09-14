@@ -60,6 +60,9 @@ for mm = 1:numel(meas_ratio)
         %-- Setting the parameters for the solver
         solver = Solver(measurement_model, sparsity_model, y);
         
+        %-- Change the radius of the l2-ball depending on the noise level
+        solver.set_radius(sqrt(10^(-(noise_level)/10)));
+        
         % solving the problem
         alpha_est = solver.solve();
         channel_est = us_seq.get_pulse_dictionary()*alpha_est;
