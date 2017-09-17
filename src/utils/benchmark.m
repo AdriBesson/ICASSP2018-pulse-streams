@@ -1,4 +1,4 @@
-function [nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_points, n_draws, noise_level)
+function [nmse, nrmse] = benchmark(us_seq, solver_type, meas_ratio, n_cha_prior, n_points, n_draws, noise_level)
 
 %-- Output variables
 nmse = zeros(numel(meas_ratio), n_draws);
@@ -64,7 +64,7 @@ for mm = 1:numel(meas_ratio)
         solver.set_radius(sqrt(10^(-(noise_level)/10)));
         
         % solving the problem
-        alpha_est = solver.solve();
+        alpha_est = solver.solve(solver_type);
         channel_est = us_seq.get_pulse_dictionary()*alpha_est;
         
         % computing the nmse and nrmse

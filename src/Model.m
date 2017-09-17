@@ -23,5 +23,12 @@ classdef Model < handle
                 x = x/model_norm;
             end
         end
+        function func = lsqr_func_handle(model, x, transp_flag)
+            if strcmp(transp_flag, 'notransp')
+                func = model.forward(x);
+            else
+                func = model.backward(x);
+            end
+        end
     end
 end
