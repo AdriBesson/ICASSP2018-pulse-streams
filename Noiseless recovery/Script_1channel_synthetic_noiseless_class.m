@@ -26,17 +26,34 @@ n_cha_prior = 0;
 
 %% inter-element spacing 1 wavelength
 %-- Simulation
-[nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
+[nmse, nrmse] = benchmark(us_seq, 'l1', meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
 
 %-- Save the output file
 filenameOut = '../resultsSPL/results_1channel_synth_pulse.mat';
 save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
 
+%% inter-element spacing 1 wavelength - Least squares
+%-- Simulation
+[nmse, nrmse] = benchmark(us_seq, 'LS', meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
+
+%-- Save the output file
+filenameOut = '../resultsSPL/results_1channel_least_squares_synth_pulse.mat';
+save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
+
 %% inter-element spacing 2 wavelengths
 %-- Simulation
 us_seq.set_element_spacing(2*us_seq.speed_of_sound/us_seq.central_frequency);
-[nmse, nrmse] = benchmark(us_seq, meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
+[nmse, nrmse] = benchmark(us_seq, 'l1', meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
 
 %-- Save the output file
 filenameOut = '../resultsSPL/results_1channel_synth_pulse_2lambda.mat';
+save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
+
+%% inter-element spacing 2 wavelengths - Least squares
+%-- Simulation
+us_seq.set_element_spacing(2*us_seq.speed_of_sound/us_seq.central_frequency);
+[nmse, nrmse] = benchmark(us_seq, 'LS', meas_ratio, n_cha_prior, n_pulses, n_draws, noise_level);
+
+%-- Save the output file
+filenameOut = '../resultsSPL/results_1channel_least_squares_synth_pulse_2lambda.mat';
 save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');

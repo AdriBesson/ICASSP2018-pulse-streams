@@ -2,9 +2,9 @@
 clear all;
 close all;
 clc
-addpath(genpath('src'));
-addpath(genpath('src/utils'));
-addpath(genpath('data'));
+addpath(genpath('../src'));
+addpath(genpath('../src/utils'));
+addpath(genpath('../data'));
 
 %-- Generate the US sequence object
 us_seq = USSequence();
@@ -14,7 +14,7 @@ xm = us_seq.get_element_locations();
 n_pulses = 20;
 
 %-- Noise level
-noise_level = 35; % noise level at -35dB
+noise_level = 40; % noise level at -40dB
 
 %-- Measurement ratios
 meas_ratio = 0.08;

@@ -52,7 +52,7 @@ solver.set_radius(sqrt(10^(-(noise_level)/10)));
 solver.set_regularization_parameter(5e0 *norm(measurement_model.backward(y), inf));
 
 % solving the problem
-alpha_est = solver.solve();
+alpha_est = solver.solve('l1');
 channel_est = us_seq.get_pulse_dictionary()*alpha_est;
 
 end

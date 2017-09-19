@@ -1,4 +1,4 @@
-classdef Solver 
+classdef Solver
     properties
         verbose
         max_iterations
@@ -10,7 +10,7 @@ classdef Solver
         sparsity_model
         measurements
     end
-
+    
     methods
         function solver = Solver(measurement_model, sparsity_model, measurements)
             solver.verbose = 0;
@@ -43,19 +43,25 @@ classdef Solver
             solver.regularization_parameter = regularization_parameter;
         end
         
-        function output_coefficients = solve(solver)
-            param_admm = get_admm_param(solver); 
-            A = @(x) solver.measurement_model.forward(x);
-            At = @(x) solver.measurement_model.backward(x);
-            T = @(x) solver.sparsity_model.forward(x);
-            Tt = @(x) solver.sparsity_model.backward(x);
-            output_coefficients = admm_bpcon(solver.measurements, param_admm.epsilon, A, At, T, Tt, param_admm);
-        end
+        function output_coefficients = solve(solver, solver_type)
+            if strcmp(solver_type, 'LS')
+                A_lsqr = @(x, transp_flag) solver.measurement_model.lsqr_func_handle(x, transp_flag);
+                output_coefficients = lsqr(A_lsqr, solver.measurements, solver.tolerance, solver.max_iterations);
+            else
+                A = @(x) solver.measurement_model.forward(x);
+                At = @(x) solver.measurement_model.backward(x);
+                T = @(x) solver.sparsity_model.forward(x);
+                Tt = @(x) solver.sparsity_model.backward(x);
+                param_admm = get_admm_param(solver);
+                output_coefficients = admm_bpcon(solver.measurements, param_admm.epsilon, A, At, T, Tt, param_admm);
+            end
             
+        end
+        
     end
     methods (Access = private)
         function param_admm = get_admm_param(solver)
-            param_admm.verbose = solver.verbose; 
+            param_admm.verbose = solver.verbose;
             param_admm.max_iter = solver.max_iterations;
             param_admm.tol = solver.tolerance;
             param_admm.nu = solver.measurement_model.get_norm(size(solver.measurement_model.backward(solver.measurements)));
