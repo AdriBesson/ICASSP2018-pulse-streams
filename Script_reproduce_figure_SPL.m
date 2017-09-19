@@ -88,6 +88,7 @@ max_c = max(channel);
 figure('Color', [1 1 1])
 plot(t*10^3, channel_noisy);
 xlabel 'Time [ms]'
+axis([0 0.07 min_c max_c])
 
 figure('Color', [1 1 1]);
 plot(t*10^3, channel);

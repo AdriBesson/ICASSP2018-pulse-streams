@@ -2,9 +2,9 @@
 clear all;
 close all;
 clc
-addpath(genpath('src'));
-addpath(genpath('src/utils'));
-addpath(genpath('data'));
+addpath(genpath('../src'));
+addpath(genpath('../src/utils'));
+addpath(genpath('../data'));
 
 %-- Generate the US sequence object
 us_seq = USSequence();
