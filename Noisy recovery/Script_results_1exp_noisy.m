@@ -26,7 +26,8 @@ pulse = us_seq.estimate_received_pulse();
 points_locations(:,1) = randi(us_seq.number_elements, [n_pulses, 1]);
 points_locations(:,2) = randi([floor(numel(pulse)/2) us_seq.number_time_samples-floor(numel(pulse)/2)], [n_pulses, 1]);
 points_amplitudes =  rand(size(points_locations(:,2)));
-[raw_data, points_locations_raw] = us_seq.generate_rawdata(points_locations, points_amplitudes, 1000);
+[points_locations_raw, us_seq] = us_seq.generate_rawdata(points_locations, points_amplitudes, 1000);
+raw_data = us_seq.data;
 
 %-- Reference channel
 channel_number = 32;

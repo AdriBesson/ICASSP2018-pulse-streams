@@ -10,6 +10,7 @@ classdef USSequence
         element_spacing = 1540/(5.208e6)
         number_time_samples = 2000
         initial_time = 0
+        data = [];
     end
 
     
@@ -51,6 +52,10 @@ classdef USSequence
             seq.initial_time = initial_time;
         end
         
+        function seq = set_data(seq, data)
+            seq.data = data;
+        end
+        
         function pulse = estimate_received_pulse(seq)
             t0 = (-seq.impulse_response_cycle/2/seq.bandwidth/seq.central_frequency): 1/seq.sampling_frequency : (seq.impulse_response_cycle/2/seq.bandwidth/seq.central_frequency);
             te = (-seq.excitation_cycle/2/seq.central_frequency): 1/seq.sampling_frequency : (seq.excitation_cycle/2/seq.central_frequency);
@@ -77,7 +82,7 @@ classdef USSequence
             channel = conv(channel, pulse, 'same');
         end
         
-        function [raw_data, points_locations_raw] = generate_rawdata(seq, points_locations, points_amplitudes, snr_awgn)
+        function [points_locations_raw, seq] = generate_rawdata(seq, points_locations, points_amplitudes, snr_awgn)
             raw_data = zeros(seq.number_time_samples, seq.number_elements);
             pulse = seq.estimate_received_pulse();
             element_locations = get_element_locations(seq);
@@ -97,7 +102,7 @@ classdef USSequence
                 raw_data_conv(:,ll) = conv(raw_data(:,ll), pulse);
             end
             raw_data = raw_data_conv(1:seq.number_time_samples,:);
-            raw_data = awgn(raw_data, snr_awgn);
+            seq.data = awgn(raw_data, snr_awgn);
         end
         
         function time_samples = get_time_samples(seq)
