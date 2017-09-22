@@ -133,7 +133,9 @@ colorbar
 colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-title 'Reference B-mode image'
+%title 'Reference B-mode image'
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 export_fig('cnd_ref.pdf');
 
 close all;
@@ -145,7 +147,9 @@ colorbar
 colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
+%title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
 export_fig('cnd_rec_1channel.pdf');
 
 close all;
@@ -157,5 +161,7 @@ colorbar
 colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-title(['B-mode image (3% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
+%title(['B-mode image (3% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
 export_fig('cnd_rec_2channels.pdf');
