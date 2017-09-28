@@ -1,6 +1,6 @@
 # Pulse stream models in ultrafast ultrasound imaging
 [Adrien Besson](https://adribesson.github.io/), [Rafael E. Carrillo](https://scholar.google.com/citations?user=-KhnCwMAAAAJ&hl=fr), [Dimitris Perdios](https://people.epfl.ch/dimitris.perdios?lang=fr), [Marcel Arditi](https://scholar.google.ch/citations?user=4w3-BxEAAAAJ&hl=fr), [Yves Wiaux](https://researchportal.hw.ac.uk/en/persons/yves-wiaux) and [Jean-Philippe Thiran](http://lts5www.epfl.ch/thiran.html).
-submitted to [IEEE Signal Processing Letters](http://ieeexplore.ieee.org/xpl/RecentIssue.jsp?punumber=97) 
+submitted to [IEEE ICASSP 2018](https://2018.ieeeicassp.org/default.asp) 
 
 ## Introduction
 This repository contains all the code to reproduce the results of the paper: Pulse stream models in ultrafast ultrasound imaging.
