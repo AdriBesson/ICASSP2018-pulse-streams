@@ -103,19 +103,18 @@ end
 us_seq_rec_2channels.set_data(rawdata_rec_2channels);
 
 %% Beamforming, postprocessing and saving
-
-%-- Beamforming and post-processing
-bmode_ref = postprocess(us_seq.beamform());
-bmode_rec_1channel = postprocess(us_seq_rec_1channel.beamform());
-bmode_rec_2channels = postprocess(us_seq_rec_2channels.beamform());
-
 %-- Image grid
 x = us_seq.get_element_locations();
 t = us_seq.get_time_samples();
 z = us_seq.speed_of_sound*t / 2;
 
-xim = x(1):us_seq.speed_of_sound/us_seq.central_frequency/4:x(end);
-zim = z(1):us_seq.speed_of_sound/us_seq.central_frequency/8:z(end);
+xim = x(1):us_seq.speed_of_sound/us_seq.central_frequency/4:10/1000;
+zim = 18/1000:us_seq.speed_of_sound/us_seq.central_frequency/8:z(end);
+
+%-- Beamforming and post-processing
+bmode_ref = postprocess(us_seq.beamform(xim, zim));
+bmode_rec_1channel = postprocess(us_seq_rec_1channel.beamform(xim, zim));
+bmode_rec_2channels = postprocess(us_seq_rec_2channels.beamform(xim, zim));
 
 %-- Saving
 filenameOut = '../resultsSPL/results_invivo_cnd.mat';

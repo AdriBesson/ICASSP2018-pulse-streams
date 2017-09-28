@@ -111,7 +111,7 @@ axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
 
 
-%% Carotid
+%% in-vivo NDE image
 clear all;
 filename = 'resultsSPL/results_invivo_cnd.mat';
 load(filename);
@@ -136,7 +136,6 @@ ylabel('Depth [mm]')
 %title 'Reference B-mode image'
 set(gca,'fontsize',14, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
-export_fig('cnd_ref.pdf');
 
 close all;
 figure('Color', [1 1 1])
@@ -149,8 +148,7 @@ xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
 set(gca,'fontsize',14, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
-%title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
-export_fig('cnd_rec_1channel.pdf');
+title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
 
 close all;
 figure('Color', [1 1 1])
@@ -163,5 +161,5 @@ xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
 set(gca,'fontsize',14, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
-%title(['B-mode image (3% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
-export_fig('cnd_rec_2channels.pdf');
+title(['B-mode image (3% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
+

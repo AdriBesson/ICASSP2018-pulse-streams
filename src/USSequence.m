@@ -117,23 +117,22 @@ classdef USSequence < handle
             element_locations = (-seq.number_elements/2:1:seq.number_elements/2-1)*seq.element_spacing;
         end
         
-        function rf_data = beamform(seq, dx_im, dz_im)
-            if ~exist('dx_im')
-                dx_im = seq.speed_of_sound / seq.central_frequency / 4;
-            end
-            if ~exist('dz_im')
-                dz_im = seq.speed_of_sound / seq.central_frequency / 8;
-            end
+        function rf_data = beamform(seq, xim, zim)
             %-- raw data grid
             x = seq.get_element_locations();
             t = seq.get_time_samples();
             z  = seq.speed_of_sound * t / 2;
 
             %-- image grid
-            xim = x(1):dx_im:x(end);
-            zim = z(1):dz_im:z(end);
-            rf_data = zeros(numel(zim), numel(xim));
+            if ~exist('xim')
+                xim = x(1):(seq.speed_of_sound / seq.central_frequency / 4):x(end);
+            end
+            if ~exist('zim')
+                zim = z(1):(seq.speed_of_sound / seq.central_frequency / 8):z(end);
+            end
             
+            
+            rf_data = zeros(numel(zim), numel(xim));
             for kk = 1:numel(xim)
                 rx_dist = sqrt(bsxfun(@plus, (xim(kk)-x).^2, (zim.^2)'));
                 tx_dist = bsxfun(@times, ones(size(x)), zim');
