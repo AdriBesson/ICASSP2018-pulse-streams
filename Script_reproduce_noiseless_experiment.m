@@ -117,7 +117,7 @@ for jj = 1:numel(list_n_cha_prior)
     save(filenameOut, 'nmse', 'nrmse', 'us_seq', 'n_pulses', 'n_draws', 'meas_ratio');
 end
 
-%-- Least-squares - inter-element spacing 1 wavelength
+%-- Least-squares - inter-element spacing 2 wavelengths
 us_seq.set_element_spacing(2*us_seq.speed_of_sound/us_seq.central_frequency);
 for jj = 1:numel(list_n_cha_prior)
     n_cha_prior = list_n_cha_prior(jj);
