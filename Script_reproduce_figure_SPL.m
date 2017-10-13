@@ -124,7 +124,6 @@ psnr_1channel = psnr(bmode_c_rec1_int, bmode_c_ref_int);
 psnr_multichannel = psnr(bmode_c_rec_int, bmode_c_ref_int);
 
 %-- Reference image
-close all;
 figure('Color', [1 1 1])
 imagesc(xim*1000, zim*1000, bmode_ref);
 axis image
@@ -133,11 +132,10 @@ colorbar
 colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-%title 'Reference B-mode image'
+title 'Reference B-mode image'
 set(gca,'fontsize',14, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 
-close all;
 figure('Color', [1 1 1])
 imagesc(xim*1000, zim*1000, bmode_rec_1channel);
 axis image
@@ -150,7 +148,6 @@ set(gca,'fontsize',14, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
 
-close all;
 figure('Color', [1 1 1])
 imagesc(xim*1000, zim*1000, bmode_rec_2channels);
 axis image
