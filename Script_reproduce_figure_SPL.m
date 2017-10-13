@@ -111,30 +111,52 @@ axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
 
 
-%% Carotid
+%% in-vivo NDE image
 clear all;
-filename = 'resultsSPL/results_carotid.mat';
+filename = 'resultsSPL/results_invivo_cnd.mat';
 load(filename);
-dBRange = 40;
+
+%-- PSNR
+bmode_c_rec1_int = (bmode_rec_1channel - min(min(bmode_rec_1channel)))/(max(max(bmode_rec_1channel))- min(min(bmode_rec_1channel)));
+bmode_c_rec_int = (bmode_rec_2channels - min(min(bmode_rec_2channels)))/(max(max(bmode_rec_2channels))- min(min(bmode_rec_2channels)));
+bmode_c_ref_int = (bmode_ref - min(min(bmode_ref)))/(max(max(bmode_ref))- min(min(bmode_ref)));
+psnr_1channel = psnr(bmode_c_rec1_int, bmode_c_ref_int);
+psnr_multichannel = psnr(bmode_c_rec_int, bmode_c_ref_int);
 
 %-- Reference image
 figure('Color', [1 1 1])
-imagesc(xim*1000, zim*1000, bmode_compressed_ref); colormap gray; caxis([-dBRange, 0]);
-axis image;
+imagesc(xim*1000, zim*1000, bmode_ref);
+axis image
+caxis([0, 100])
+colorbar
+colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
 title 'Reference B-mode image'
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 
 figure('Color', [1 1 1])
-imagesc(xim*1000, zim*1000, bmode_compressed_1channel_rec); colormap gray; caxis([-dBRange, 0]);
-axis image;
+imagesc(xim*1000, zim*1000, bmode_rec_1channel);
+axis image
+caxis([0, 100])
+colorbar
+colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-title(['B-mode image (6% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
+title(['B-mode image (3% measurements)- 1 channel - PSNR= ', num2str(psnr_1channel), 'dB']);
 
 figure('Color', [1 1 1])
-imagesc(xim*1000, zim*1000, bmode_compressed_multichannel_rec); colormap gray; caxis([-dBRange, 0]);
-axis image;
+imagesc(xim*1000, zim*1000, bmode_rec_2channels);
+axis image
+caxis([0, 100])
+colorbar
+colormap('bone')
 xlabel('Lateral dimension [mm]')
 ylabel('Depth [mm]')
-title(['B-mode image (6% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
+title(['B-mode image (3% measurements)- multichannel - PSNR= ', num2str(psnr_multichannel), 'dB']);
+

@@ -1,4 +1,4 @@
-function channel_est = reconstruct_image(us_seq, meas_ratio, raw_data, channel_number, n_cha_prior, points_locations_raw, noise_level)
+function [channel_est, alpha_est] = reconstruct_image(us_seq, meas_ratio, raw_data, channel_number, n_cha_prior, points_locations_raw, epsilon, regularization_parameter)
 
 %-- Setting the sparsity model
 sparsity_model = SparsityModel();
@@ -7,7 +7,15 @@ sparsity_model = SparsityModel();
 M = round(meas_ratio*us_seq.number_time_samples);
 
 % Reference channels
-channel_number_prior = channel_number + (-n_cha_prior/2:n_cha_prior/2);
+if (not(n_cha_prior == 1))
+    channel_number_prior = channel_number + (-n_cha_prior/2:n_cha_prior/2);
+else
+    if channel_number ~= size(raw_data, 2)
+        channel_number_prior = [channel_number, channel_number + 1];
+    else
+        channel_number_prior = [channel_number, channel_number - 1];
+    end
+end
 
 % Considered channel
 channel_number = channel_number_prior(round(numel(channel_number_prior)/2));
@@ -31,7 +39,11 @@ if (~isempty(channel_number_prior))
         mask_pp = zeros(numel(channel),1);
         for ll = 1:size(points_locations_raw, 2)
             delta_ind = round(abs(xm(channel_number_prior(pp)) - xm(channel_number))*us_seq.sampling_frequency / us_seq.speed_of_sound);
-            cur_point = points_locations_raw(channel_number_prior(pp), ll);
+            if numel(channel_number_prior) > 1
+                cur_point = points_locations_raw(channel_number_prior(pp), ll);
+            else
+                cur_point = points_locations_raw(ll);
+            end
             mask_tmp = zeros(size(mask_pp));
             mask_tmp(max(cur_point-delta_ind, 1):min(cur_point+delta_ind, numel(mask_pp))) = 1;
             mask_pp = mask_pp + mask_tmp;
@@ -46,10 +58,13 @@ end
 solver = Solver(measurement_model, sparsity_model, y);
 
 %-- Change the radius of the l2-ball depending on the noise level
-solver.set_radius(sqrt(10^(-(noise_level)/10)));
+if ~exist('epsilon')
+    epsilon = 3e-1*norm(measurement_model.backward(y));
+end
+solver.set_radius(epsilon);
 
 %-- Change the regularization parameter
-solver.set_regularization_parameter(5e0 *norm(measurement_model.backward(y), inf));
+solver.set_regularization_parameter(regularization_parameter*norm(measurement_model.backward(y), inf));
 
 % solving the problem
 alpha_est = solver.solve('l1');

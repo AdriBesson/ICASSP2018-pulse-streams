@@ -19,7 +19,7 @@ for mm = 1:numel(meas_ratio)
         points_amplitudes =  rand(size(points_locations(:,2)));
         
         %-- Positions and amplitude of the points
-        [points_locations_raw, us_seq] = us_seq.generate_rawdata(points_locations, points_amplitudes, noise_level);
+        points_locations_raw = us_seq.generate_rawdata(points_locations, points_amplitudes, noise_level);
         raw_data = us_seq.data;
         
         % Reference channels

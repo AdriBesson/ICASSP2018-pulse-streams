@@ -1,4 +1,4 @@
-classdef USSequence
+classdef USSequence < handle
     properties (SetAccess = public)
         central_frequency = 5.208e6
         sampling_frequency = 20832000
@@ -48,6 +48,10 @@ classdef USSequence
             seq.number_time_samples = number_time_samples;
         end
         
+        function seq = set_speed_of_sound(seq, speed_of_sound)
+            seq.speed_of_sound = speed_of_sound;
+        end
+        
         function seq = set_initial_time(seq, initial_time)
             seq.initial_time = initial_time;
         end
@@ -82,7 +86,7 @@ classdef USSequence
             channel = conv(channel, pulse, 'same');
         end
         
-        function [points_locations_raw, seq] = generate_rawdata(seq, points_locations, points_amplitudes, snr_awgn)
+        function points_locations_raw = generate_rawdata(seq, points_locations, points_amplitudes, snr_awgn)
             raw_data = zeros(seq.number_time_samples, seq.number_elements);
             pulse = seq.estimate_received_pulse();
             element_locations = get_element_locations(seq);
@@ -106,13 +110,39 @@ classdef USSequence
         end
         
         function time_samples = get_time_samples(seq)
-            time_samples = (seq.initial_time:seq.number_time_samples-1)/seq.sampling_frequency;
+            time_samples = seq.initial_time+(0:seq.number_time_samples-1)/seq.sampling_frequency;
         end
 
         function element_locations = get_element_locations(seq)
-            element_locations = (-seq.number_elements/2:1:seq.number_elements/2)*seq.element_spacing;
+            element_locations = (-seq.number_elements/2:1:seq.number_elements/2-1)*seq.element_spacing;
         end
         
+        function rf_data = beamform(seq, xim, zim)
+            %-- raw data grid
+            x = seq.get_element_locations();
+            t = seq.get_time_samples();
+            z  = seq.speed_of_sound * t / 2;
+
+            %-- image grid
+            if ~exist('xim')
+                xim = x(1):(seq.speed_of_sound / seq.central_frequency / 4):x(end);
+            end
+            if ~exist('zim')
+                zim = z(1):(seq.speed_of_sound / seq.central_frequency / 8):z(end);
+            end
+            
+            
+            rf_data = zeros(numel(zim), numel(xim));
+            for kk = 1:numel(xim)
+                rx_dist = sqrt(bsxfun(@plus, (xim(kk)-x).^2, (zim.^2)'));
+                tx_dist = bsxfun(@times, ones(size(x)), zim');
+                delay_txrx = 1/seq.speed_of_sound *(rx_dist + tx_dist);
+                for pp = 1:numel(x)
+                    rf_data(:,kk) = rf_data(:,kk) + interp1(t, seq.data(:,pp), delay_txrx(:,pp), 'linear', 0);
+                end
+            end
+            
+        end
     end
     
     
