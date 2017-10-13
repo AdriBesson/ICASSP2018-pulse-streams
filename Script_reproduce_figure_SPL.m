@@ -6,7 +6,7 @@ clc
 %% Noiseless case - intersensor spacing 1 wavelength
 
 %-- filnename
-filename_prefix = 'resultsSPL/results_';
+filename_prefix = 'results/results_';
 filnename_suffix = 'channel_synth_pulse.mat';
 list_scenarios=[1, 2, 5, 10];
 it = 1;
@@ -41,7 +41,7 @@ set(gcf, 'PaperPositionMode', 'auto');
 %% Noiseless case - intersensor spacing 2 wavelengths
 
 %-- Prefix and suffix of the filename
-filename_prefix = 'resultsSPL/results_';
+filename_prefix = 'results/results_';
 filnename_suffix = 'channel_synth_pulse_2lambda.mat';
 
 %-- List of scenarios (number of channels involved)
@@ -79,7 +79,7 @@ set(gcf, 'PaperPositionMode', 'auto');
 
 %% Noisy case
 %-- Single channel scenario
-filename = 'resultsSPL/results_1channel_noisy.mat';
+filename = 'results/results_1channel_noisy.mat';
 load(filename);
 min_c = min(channel);
 max_c = max(channel);
@@ -101,7 +101,7 @@ axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
 
 %-- 5 channels scenario
-filename = 'resultsSPL/results_multichannel_noisy.mat';
+filename = 'results/results_multichannel_noisy.mat';
 load(filename);
 
 % Plot the results
@@ -113,7 +113,7 @@ xlabel 'Time [ms]'
 
 %% in-vivo NDE image
 clear all;
-filename = 'resultsSPL/results_invivo_cnd.mat';
+filename = 'results/results_invivo_cnd.mat';
 load(filename);
 
 %-- PSNR

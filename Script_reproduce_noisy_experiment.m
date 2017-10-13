@@ -47,7 +47,7 @@ channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_numb
 
 %-- Save the output file
 t = us_seq.get_time_samples();
-filenameOut = 'resultsSPL/results_1channel_noisy.mat';
+filenameOut = 'results/results_1channel_noisy.mat';
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
 
 %% Multi-channel experiment
@@ -57,5 +57,5 @@ n_cha_prior = 4;
 channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_number, n_cha_prior, points_locations_raw, epsilon, regularization_parameter);
 
 %-- Save the output file
-filenameOut = 'resultsSPL/results_multichannel_noisy.mat';
+filenameOut = 'results/results_multichannel_noisy.mat';
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
