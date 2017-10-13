@@ -3,16 +3,16 @@ clear all;
 close all;
 clc
 
-addpath(genpath('../src'));
-addpath(genpath('../src/utils'));
-addpath(genpath('../data'));
+addpath(genpath('src'));
+addpath(genpath('src/utils'));
+addpath(genpath('data'));
 
 %-- Fix the seed number for reproducibility
 rng('default');
 rng(1);
 
 %-- Load the data file
-load('invivo_CND_data.mat')
+load('data/invivo_CND_data.mat')
 
 %-- Generate the US sequence object
 us_seq = USSequence();
@@ -117,6 +117,6 @@ bmode_rec_1channel = postprocess(us_seq_rec_1channel.beamform(xim, zim));
 bmode_rec_2channels = postprocess(us_seq_rec_2channels.beamform(xim, zim));
 
 %-- Saving
-filenameOut = '../resultsSPL/results_invivo_cnd.mat';
+filenameOut = 'resultsSPL/results_invivo_cnd.mat';
 save(filenameOut, 'bmode_ref', 'bmode_rec_1channel', 'bmode_rec_2channels', 'xim', 'zim')
 
