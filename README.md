@@ -25,6 +25,7 @@ This software has been tested on Linux 64-bit system (Ubuntu 16-04, Mint distrib
 	* The results of the noiseless experiments (used to generate Figure 2), run the script 'Script_reproduce_noiseless_experiment.m'
 	* The results of the noisy experiments (used to generate Figure 3), run the script 'Script_reproduce_noisy_experiment.m'
 	* The results of the noisy experiment (used to generate Figure 4), run the script 'Script_reproduce_invivo_experiment.m'
+5. If you are interested in testing the least-square solution of the problem, explained in Section 2.4.1 of the paper, for the noiseless experiment, you can run the script 'Script_least_squares_noiseless_experiment.m'
 
 ## Contact:
 Adrien Besson, (adrien.besson@epfl.ch)
