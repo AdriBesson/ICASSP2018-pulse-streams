@@ -89,16 +89,22 @@ figure('Color', [1 1 1])
 plot(t*10^3, channel_noisy);
 xlabel 'Time [ms]'
 axis([0 0.07 min_c max_c])
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 
 figure('Color', [1 1 1]);
 plot(t*10^3, channel);
 xlabel 'Time [ms]'
 axis([0 0.07 min_c max_c])
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 
 figure('Color', [1 1 1]);
 plot(t*10^3, channel_est);
 axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 
 %-- 5 channels scenario
 filename = 'results/results_multichannel_noisy.mat';
@@ -109,7 +115,8 @@ figure('Color', [1 1 1]);
 plot(t*10^3, channel_est);
 axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
-
+set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gcf, 'PaperPositionMode', 'auto');
 
 %% in-vivo NDE image
 clear all;

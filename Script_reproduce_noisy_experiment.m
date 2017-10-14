@@ -6,6 +6,10 @@ addpath(genpath('src'));
 addpath(genpath('src/utils'));
 addpath(genpath('data'));
 
+%-- Fix the seed number for reproducibility
+rng('default');
+rng(1);
+
 %-- Generate the US sequence object
 us_seq = USSequence();
 xm = us_seq.get_element_locations();
@@ -14,7 +18,7 @@ xm = us_seq.get_element_locations();
 n_pulses = 20;
 
 %-- Noise level
-noise_level = 40; % noise level at -40dB
+noise_level = 30; % noise level at -40dB
 epsilon = sqrt(10^(-(noise_level)/10)); % Bound depending on the noise level
 regularization_parameter = 5e0;
 
