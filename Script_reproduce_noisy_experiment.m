@@ -53,6 +53,7 @@ channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_numb
 %-- Save the output file
 t = us_seq.get_time_samples();
 filenameOut = 'results/results_1channel_noisy.mat';
+disp(['************ Noisy data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
 
 %% Multi-channel experiment
@@ -64,5 +65,5 @@ channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_numb
 
 %-- Save the output file
 filenameOut = 'results/results_multichannel_noisy.mat';
-disp(['************ In-vivo data - Saving data in ', filenameOut ,' ************'])
+disp(['************ Noisy data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');

@@ -119,6 +119,6 @@ bmode_rec_2channels = postprocess(us_seq_rec_2channels.beamform(xim, zim));
 
 %-- Saving
 filenameOut = 'results/results_invivo_cnd.mat';
-disp(['************ In-vivo data - Saving data in ', filenameOut ,' ************'])
+disp(['************ In-vivo data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 'bmode_ref', 'bmode_rec_1channel', 'bmode_rec_2channels', 'xim', 'zim')
 
