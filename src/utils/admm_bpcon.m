@@ -42,9 +42,9 @@ function [xsol, z] = admm_bpcon(y, epsilon, A, At, Psi, Psit, param)
 %       as sum_i{weights_i.*abs(x_i)}
 %           
 %
-% Author: Rafael Carrillo
-% E-mail: rafael.carrillo@epfl.ch
-% Date: Nov. 22, 2014
+% Author: Adrien Besson	
+% E-mail: adrien.besson@epfl.ch
+% Date: Oct. 25, 2017
 %
 
 % Optional input arguments

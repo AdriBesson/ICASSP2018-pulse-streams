@@ -39,11 +39,8 @@ function [sol, norm_l1] = prox_L1(x, lambda, param)
 % Algorithm for Linear Inverse Problems",  SIAM Journal on Imaging Sciences
 % 2 (2009), no. 1, 183--202.
 %
-%
-%
-% Author: Gilles Puy
-% E-mail: gilles.puy@epfl.ch
-% Date: Dec. 1, 2010
+% Taken from the unlocbox (https://epfl-lts2.github.io/unlocbox-html/)
+% developed at LTS2 EPFL
 %
 
 % Optional input arguments
