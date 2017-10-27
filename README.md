@@ -17,9 +17,9 @@ This software has been tested on Linux 64-bit system (Ubuntu 16-04, Mint distrib
 ### Prerequisites
 1. MATLAB (Tested on R2017a)
 
-## Running USStream:
-1. Download and unzip USStream-master.zip
-2. Open MATLAB and navigate in the folder USStream-master
+## Running the code:
+1. Download and unzip ICASSP2018-pulse-streams-master.zip
+2. Open MATLAB and navigate in the folder ICASSP2018-pulse-streams-master
 3. If you want to reproduce the Figures of the paper, run the script 'Script_reproduce_figure_ICASSP.m'
 4. If you want to regenerate:
 	* The results of the noiseless experiments (used to generate Figure 2), run the script 'Script_reproduce_noiseless_experiment.m'
