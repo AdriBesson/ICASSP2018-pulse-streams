@@ -1,4 +1,4 @@
-# Pulse-stream models in time-of-flight imaging
+# [Pulse-stream models in time-of-flight imaging](https://infoscience.epfl.ch/record/231982/files/icassp_2018.pdf?version=1)
 [Adrien Besson](https://adribesson.github.io/), [Dimitris Perdios](https://people.epfl.ch/dimitris.perdios?lang=fr), [Marcel Arditi](https://scholar.google.ch/citations?user=4w3-BxEAAAAJ&hl=fr), [Yves Wiaux](https://researchportal.hw.ac.uk/en/persons/yves-wiaux) and [Jean-Philippe Thiran](http://lts5www.epfl.ch/thiran.html).
 submitted to [IEEE ICASSP 2018](https://2018.ieeeicassp.org/default.asp) 
 
