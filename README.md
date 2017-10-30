@@ -9,7 +9,7 @@ This repository contains all the code to reproduce the results of the paper: Pul
 This paper considers the problem of reconstructing raw signals from random projections in the context of time-of-flight imaging with an array of sensors. It presents a new signal model, coined as multichannel pulse-stream model, which exploits pulse-stream models and accounts for additional structure induced by inter-sensor dependencies. We propose a sampling theorem and a reconstruction algorithm, based on l1-minimization, for signals belonging to such a model. We show the benefits of the proposed approach by means of numerical simulations and on a real non-destructive-evaluation application.
 
 ## Citation (BibTex):
-If you are using this code, please cite the following paper. 
+If you are using this code, please cite the following paper: A. G. J. Besson, D. Perdios, Y. Wiaux and J.-P. Thiran. PULSE-STREAM MODELS IN TIME-OF-FLIGHT IMAGING submitted to 2018 IEEE International Conference on Acoustics, Speech and Signal Processing. 
 
 ## System Requirements:
 This software has been tested on Linux 64-bit system (Ubuntu 16-04, Mint distribution) and on Windows 10 system.
