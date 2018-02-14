@@ -24,18 +24,18 @@ end
 
 
 figure('Color', [1 1 1]);
-plot(meas_ratio(1:15), nmse_mean(1, 1:15), '--o', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(1, 1:15), '--o', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(2, 1:15), '--x', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(2, 1:15), '--x', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(3, 1:15), '--d', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(3, 1:15), '--d', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(4, 1:15), '--+', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(4, 1:15), '--+', 'LineWidth', 2);
 grid on
 xlabel 'Compression ratio (M/N)'
 ylabel 'Normalized MSE'
 legend('1channel', '2 channels', '5 channels', '10 channels');
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18', 'GridLineStyle', '-')
 set(gcf, 'PaperPositionMode', 'auto');
 
 %% Noiseless case - intersensor spacing 2 wavelengths
@@ -63,18 +63,18 @@ end
 
 
 figure('Color', [1 1 1]);
-plot(meas_ratio(1:15), nmse_mean(1,1:15), '--o', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(1,1:15), '--o', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(2,1:15), '--x', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(2,1:15), '--x', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(3,1:15), '--d', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(3,1:15), '--d', 'LineWidth', 2);
 hold on
-plot(meas_ratio(1:15), nmse_mean(4,1:15), '--+', 'LineWidth', 1.5);
+plot(meas_ratio(1:15), nmse_mean(4,1:15), '--+', 'LineWidth', 2);
 grid on
 xlabel 'Compression ratio (M/N)'
 ylabel 'Normalized MSE'
 legend('1channel', '2 channels', '5 channels', '10 channels');
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18, 'GridLineStyle', '-')
 set(gcf, 'PaperPositionMode', 'auto');
 
 %% Noisy case
@@ -89,21 +89,21 @@ figure('Color', [1 1 1])
 plot(t*10^3, channel_noisy);
 xlabel 'Time [ms]'
 axis([0 0.07 min_c max_c])
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 
 figure('Color', [1 1 1]);
 plot(t*10^3, channel);
 xlabel 'Time [ms]'
 axis([0 0.07 min_c max_c])
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 
 figure('Color', [1 1 1]);
 plot(t*10^3, channel_est);
 axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 
 %-- 5 channels scenario
@@ -115,7 +115,7 @@ figure('Color', [1 1 1]);
 plot(t*10^3, channel_est);
 axis([0 0.07 min_c max_c])
 xlabel 'Time [ms]'
-set(gca,'fontsize',14, 'GridLineStyle', ':')
+set(gca,'fontsize',18, 'GridLineStyle', ':')
 set(gcf, 'PaperPositionMode', 'auto');
 
 %% in-vivo NDE image
