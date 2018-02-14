@@ -44,6 +44,7 @@ raw_data_noisy = awgn(raw_data, noise_level);
 channel_noisy = raw_data_noisy(:,channel_number);
 
 %% Single channel experiment
+disp('************ Noisy data - 1-channel scenario ************')
 n_cha_prior = 0; 
 
 %-- Reconstruction
@@ -52,9 +53,11 @@ channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_numb
 %-- Save the output file
 t = us_seq.get_time_samples();
 filenameOut = 'results/results_1channel_noisy.mat';
+disp(['************ Noisy data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');
 
 %% Multi-channel experiment
+disp('************ Noisy data - 5-channel scenario ************')
 n_cha_prior = 4; 
 
 %-- Reconstruction
@@ -62,4 +65,5 @@ channel_est = reconstruct_image(us_seq, meas_ratio, raw_data_noisy, channel_numb
 
 %-- Save the output file
 filenameOut = 'results/results_multichannel_noisy.mat';
+disp(['************ Noisy data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 't', 'channel_noisy', 'channel_est', 'channel');

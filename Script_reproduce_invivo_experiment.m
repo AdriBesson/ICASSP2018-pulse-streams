@@ -69,7 +69,7 @@ n_cha_prior = 0;
 %-- Reconstruction
 regularization_parameter =  3e-1;
 rawdata_rec_1channel = zeros(size(rawdata));
-disp('************ In-vivo data - 1-channel scenario************')
+disp('************ In-vivo data - 1-channel scenario ************')
 for kk = 1:us_seq.number_elements
     rawdata_rec_1channel(:,kk) = reconstruct_image(us_seq_rec_1channel, meas_ratio, rawdata, kk, n_cha_prior, [], [], regularization_parameter);
 end
@@ -90,7 +90,7 @@ n_cha_prior = 1;
 number_of_points_support = 30;
 regularization_parameter =  3e-1;
 alpha_est = alpha_est_ref;
-disp('************ In-vivo data - 2-channel scenario************')
+disp('************ In-vivo data - 2-channel scenario ************')
 for kk = channel_number-1:-1:1
     points_locations_raw = get_support(us_seq, alpha_est, number_of_points_support);
     [rawdata_rec_2channels(:,kk), alpha_est] = reconstruct_image(us_seq_rec_2channels, meas_ratio, rawdata, kk, n_cha_prior, points_locations_raw', [], regularization_parameter);
@@ -103,6 +103,7 @@ end
 us_seq_rec_2channels.set_data(rawdata_rec_2channels);
 
 %% Beamforming, postprocessing and saving
+disp('************ In-vivo data - Beamforming ************')
 %-- Image grid
 x = us_seq.get_element_locations();
 t = us_seq.get_time_samples();
@@ -118,5 +119,6 @@ bmode_rec_2channels = postprocess(us_seq_rec_2channels.beamform(xim, zim));
 
 %-- Saving
 filenameOut = 'results/results_invivo_cnd.mat';
+disp(['************ In-vivo data - Saving in ', filenameOut ,' ************'])
 save(filenameOut, 'bmode_ref', 'bmode_rec_1channel', 'bmode_rec_2channels', 'xim', 'zim')
 
